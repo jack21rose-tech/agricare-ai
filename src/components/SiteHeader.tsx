@@ -16,6 +16,7 @@ export function SiteHeader() {
           <Link to="/dashboard" className="text-muted-foreground hover:text-foreground">Dashboard</Link>
           <Link to="/scan" className="text-muted-foreground hover:text-foreground">Scan</Link>
           <Link to="/assistant" className="text-muted-foreground hover:text-foreground">Assistant</Link>
+          <Link to="/admin" className="text-muted-foreground hover:text-foreground">Admin</Link>
         </nav>
         <Link
           to="/dashboard"
