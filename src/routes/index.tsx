@@ -50,23 +50,30 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img src={heroFarm} alt="" width={1920} height={1280} className="h-full w-full object-cover" />
+        {/* Strong base scrim for legibility */}
+        <div className="absolute inset-0 bg-[oklch(0.18_0.06_265/0.55)]" />
+        {/* Tricolor brand gradient on top */}
         <div className="absolute inset-0 bg-gradient-hero" />
+        {/* Left-side fade so headline always sits on dark */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.15_0.06_265/0.85)] via-[oklch(0.15_0.06_265/0.45)] to-transparent" />
+        {/* Bottom fade into page */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
       </div>
-      <RainLayer count={60} opacity={0.4} />
+      <RainLayer count={60} opacity={0.35} />
 
       {/* floating crops */}
       <div className="pointer-events-none absolute inset-0 -z-0">
-        <Wheat className="absolute left-[8%] top-[28%] h-10 w-10 text-accent/70 animate-sway" />
-        <Wheat className="absolute right-[12%] top-[40%] h-14 w-14 text-accent/60 animate-sway" style={{ animationDelay: "1.2s" }} />
-        <Leaf className="absolute right-[28%] top-[18%] h-8 w-8 text-primary-glow/80 animate-leaf" style={{ animationDuration: "16s" }} />
+        <Wheat className="absolute left-[8%] top-[28%] h-10 w-10 text-accent/60 animate-sway" />
+        <Wheat className="absolute right-[12%] top-[40%] h-14 w-14 text-accent/50 animate-sway" style={{ animationDelay: "1.2s" }} />
+        <Leaf className="absolute right-[28%] top-[18%] h-8 w-8 text-primary-glow/70 animate-leaf" style={{ animationDuration: "16s" }} />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 pb-28 pt-24 sm:px-6 sm:pt-32 lg:pt-40">
-        <div className="max-w-3xl animate-rise">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur">
+        <div className="max-w-3xl animate-rise [text-shadow:0_2px_18px_oklch(0.1_0.05_265/0.55)]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-xs font-medium text-white backdrop-blur">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
             <span className="font-hindi">भारत के किसानों के लिए · Powered by Multi-modal AI</span>
           </div>
@@ -74,36 +81,36 @@ function Hero() {
           <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] text-white text-balance sm:text-6xl lg:text-7xl">
             <span className="font-hindi block text-4xl font-semibold sm:text-5xl lg:text-6xl">
               हर किसान बनेगा{" "}
-              <span className="bg-gradient-to-r from-primary-glow to-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[oklch(0.85_0.18_70)] via-[oklch(0.95_0.04_85)] to-[oklch(0.78_0.18_150)] bg-clip-text text-transparent [text-shadow:none]">
                 स्मार्ट किसान
               </span>
             </span>
-            <span className="mt-3 block text-3xl font-semibold sm:text-4xl lg:text-5xl">
+            <span className="mt-3 block text-3xl font-semibold text-white/95 sm:text-4xl lg:text-5xl">
               Technology for Every Kisan.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-white/85 text-balance">
+          <p className="mt-6 max-w-xl text-lg text-white/90 text-balance">
             <span className="font-hindi">AI से चलेगी अगली खेती क्रांति।</span>{" "}
             Scan crops, read the sky, and get trusted advice in your own language — Hindi, Tamil, Marathi and more.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3 [text-shadow:none]">
             <Link
               to="/scan"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-foreground shadow-elegant transition hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-elegant transition hover:scale-[1.02]"
             >
               <Camera className="h-5 w-5" /> <span className="font-hindi">फसल स्कैन करें</span>
             </Link>
             <Link
               to="/dashboard"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20"
             >
               View Dashboard <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-5 text-xs text-white/70">
+          <div className="mt-10 flex flex-wrap items-center gap-5 text-xs text-white/80">
             <span className="inline-flex items-center gap-2"><Mic className="h-4 w-4" /> Voice-first</span>
             <span className="inline-flex items-center gap-2"><WifiOff className="h-4 w-4" /> Offline-friendly</span>
             <span className="inline-flex items-center gap-2"><LanguagesIcon className="h-4 w-4" /> 12 भाषाएँ</span>
