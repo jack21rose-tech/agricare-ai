@@ -34,8 +34,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-hindi: "Noto Sans Devanagari", "Tiro Devanagari Hindi", "Inter", system-ui, sans-serif;
+  --font-script: "Tiro Devanagari Hindi", "Noto Sans Devanagari", serif;
 }
 
 :root {
