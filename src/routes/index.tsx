@@ -518,20 +518,22 @@ function LanguagesBlock() {
 function CTA() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-10 shadow-elegant sm:p-16">
+      <div className="relative overflow-hidden rounded-3xl p-10 shadow-elegant sm:p-16"
+        style={{ background: "linear-gradient(135deg, oklch(0.62 0.21 50) 0%, oklch(0.32 0.16 265) 55%, oklch(0.48 0.17 150) 100%)" }}>
         <RainLayer count={40} opacity={0.25} />
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[oklch(0.7_0.18_55)] via-white to-[oklch(0.55_0.16_150)]" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
         <div className="relative max-w-2xl">
-          <Sparkles className="h-7 w-7 text-primary-foreground" />
-          <h2 className="mt-4 font-display text-4xl font-bold text-primary-foreground text-balance sm:text-5xl">
+          <Sparkles className="h-7 w-7 text-white" />
+          <h2 className="mt-4 font-display text-4xl font-extrabold text-white text-balance sm:text-5xl drop-shadow">
             <span className="font-hindi">अगली खेती क्रांति में आपका स्वागत है।</span>
           </h2>
-          <p className="mt-4 text-lg text-primary-foreground/85">Free for India's 120 million Kisans. <span className="font-hindi">हमेशा मुफ़्त। हमेशा आपकी भाषा में।</span></p>
+          <p className="mt-4 text-lg font-medium text-white">Free for India's 120 million Kisans. <span className="font-hindi">हमेशा मुफ़्त। हमेशा आपकी भाषा में।</span></p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 font-semibold text-foreground shadow-elegant transition hover:scale-[1.02]">
+            <Link to="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-bold text-[oklch(0.2_0.08_265)] shadow-elegant ring-2 ring-white transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[oklch(0.7_0.18_55)]">
               <span className="font-hindi">शुरू करें</span> <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/assistant" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-semibold text-primary-foreground backdrop-blur transition hover:bg-white/20">
+            <Link to="/assistant" className="inline-flex items-center gap-2 rounded-full bg-black/30 px-6 py-3 text-base font-bold text-white ring-2 ring-white backdrop-blur transition hover:bg-black/45 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[oklch(0.55_0.16_150)]">
               <Mic className="h-4 w-4" /> Talk to AI
             </Link>
           </div>
