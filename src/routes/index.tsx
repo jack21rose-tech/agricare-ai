@@ -13,6 +13,11 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { RainLayer } from "@/components/RainLayer";
 import { VoiceWave } from "@/components/VoiceWave";
 import { RippleButton } from "@/components/RippleButton";
+import { HighContrastToggle } from "@/components/HighContrastToggle";
+
+function TricolorDivider() {
+  return <div role="separator" aria-hidden className="divider-tricolor" />;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,15 +37,23 @@ function Landing() {
       <SiteHeader />
       <Hero />
       <Marquee />
+      <TricolorDivider />
       <LivingDashboard />
+      <TricolorDivider />
       <Features />
+      <TricolorDivider />
       <ScanPreview />
+      <TricolorDivider />
       <VoiceSection />
+      <TricolorDivider />
       <Stories />
+      <TricolorDivider />
       <Revolution />
+      <TricolorDivider />
       <LanguagesBlock />
       <CTA />
       <Footer />
+      <HighContrastToggle />
     </div>
   );
 }
@@ -100,13 +113,13 @@ function Hero() {
           <div className="mt-8 flex flex-wrap gap-3 [text-shadow:none]">
             <Link
               to="/scan"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-elegant transition hover:scale-[1.02]"
+              className="cta-saffron inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-bold transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white"
             >
               <Camera className="h-5 w-5" /> <span className="font-hindi">फसल स्कैन करें</span>
             </Link>
             <Link
               to="/dashboard"
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-bold text-[oklch(0.2_0.08_265)] shadow-elegant ring-2 ring-white transition hover:bg-[oklch(0.97_0.02_85)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[oklch(0.55_0.16_150)]"
             >
               View Dashboard <ArrowRight className="h-4 w-4" />
             </Link>
@@ -261,17 +274,24 @@ function Features() {
         </h2>
       </div>
       <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {feats.map(({ icon: Icon, t, h, d }) => (
-          <div key={t} className="group rounded-2xl border bg-card p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-elegant">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
-              <Icon className="h-6 w-6 text-primary-foreground" />
-              <span className="absolute -inset-1 rounded-2xl animate-node-glow opacity-0 group-hover:opacity-100" />
+        {feats.map(({ icon: Icon, t, h, d }, i) => {
+          const palette = [
+            { bg: "cta-saffron", h: "text-[oklch(0.55_0.22_50)]" },
+            { bg: "cta-indigo",  h: "text-[oklch(0.35_0.16_265)]" },
+            { bg: "cta-green",   h: "text-[oklch(0.42_0.17_150)]" },
+          ][i % 3];
+          return (
+            <div key={t} className="group rounded-2xl border border-[oklch(0.86_0.04_85)] bg-card p-6 shadow-soft border-tricolor-t transition hover:-translate-y-1 hover:shadow-elegant">
+              <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl shadow-glow ${palette.bg}`}>
+                <Icon className="h-6 w-6 text-white" />
+                <span className="absolute -inset-1 rounded-2xl animate-node-glow opacity-0 group-hover:opacity-100" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-bold text-foreground">{t}</h3>
+              <p className={`mt-1 font-hindi text-sm font-semibold ${palette.h}`}>{h}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/75">{d}</p>
             </div>
-            <h3 className="mt-5 font-display text-xl font-semibold">{t}</h3>
-            <p className="mt-1 font-hindi text-sm text-primary">{h}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
@@ -404,22 +424,25 @@ function Stories() {
         </h2>
       </div>
       <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {stories.map((s) => (
-          <article key={s.name} className="group overflow-hidden rounded-3xl border bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-elegant">
-            <div className="relative h-56 overflow-hidden">
-              <img src={s.img} alt={s.name} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent" />
-              <div className="absolute bottom-3 left-4 text-white">
-                <div className="font-display text-lg font-semibold">{s.name}</div>
-                <div className="text-xs opacity-80">{s.place}</div>
+        {stories.map((s, i) => {
+          const accent = ["text-[oklch(0.55_0.22_50)]", "text-[oklch(0.35_0.16_265)]", "text-[oklch(0.42_0.17_150)]"][i % 3];
+          return (
+            <article key={s.name} className="group overflow-hidden rounded-3xl border border-[oklch(0.86_0.04_85)] bg-card shadow-soft border-tricolor-t transition hover:-translate-y-1 hover:shadow-elegant">
+              <div className="relative h-56 overflow-hidden">
+                <img src={s.img} alt={s.name} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white">
+                  <div className="font-display text-lg font-bold drop-shadow">{s.name}</div>
+                  <div className="text-xs font-medium opacity-95">{s.place}</div>
+                </div>
               </div>
-            </div>
-            <div className="p-6">
-              <Quote className="h-5 w-5 text-primary" />
-              <p className="mt-3 font-hindi text-sm leading-relaxed text-foreground/90">{s.quote}</p>
-            </div>
-          </article>
-        ))}
+              <div className="p-6">
+                <Quote className={`h-5 w-5 ${accent}`} />
+                <p className="mt-3 font-hindi text-base leading-relaxed text-foreground">{s.quote}</p>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
@@ -453,13 +476,13 @@ function Revolution() {
 
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
-              { v: "120M+", l: "किसान · Farmers" },
-              { v: "28", l: "राज्य · States" },
-              { v: "12", l: "भाषाएँ · Languages" },
+              { v: "120M+", l: "किसान · Farmers", c: "text-[oklch(0.55_0.22_50)]", b: "border-[oklch(0.7_0.18_55)]" },
+              { v: "28",    l: "राज्य · States",    c: "text-[oklch(0.35_0.16_265)]", b: "border-[oklch(0.42_0.16_265)]" },
+              { v: "12",    l: "भाषाएँ · Languages", c: "text-[oklch(0.42_0.17_150)]", b: "border-[oklch(0.55_0.16_150)]" },
             ].map((x) => (
-              <div key={x.l} className="rounded-2xl border bg-card/60 p-4 text-center shadow-soft">
-                <div className="font-display text-2xl font-bold text-primary">{x.v}</div>
-                <div className="mt-1 font-hindi text-xs text-muted-foreground">{x.l}</div>
+              <div key={x.l} className={`rounded-2xl border-2 bg-card p-4 text-center shadow-soft ${x.b}`}>
+                <div className={`font-display text-2xl font-extrabold ${x.c}`}>{x.v}</div>
+                <div className="mt-1 font-hindi text-xs font-medium text-foreground/80">{x.l}</div>
               </div>
             ))}
           </div>
@@ -480,9 +503,12 @@ function LanguagesBlock() {
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Voice and chat in 12 Indian languages so every farmer feels at home.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {langs.map((l) => (
-            <span key={l} className="rounded-full border bg-card px-4 py-2 text-sm font-medium shadow-soft transition hover:-translate-y-0.5 hover:shadow-elegant">{l}</span>
-          ))}
+          {langs.map((l, i) => {
+            const ring = ["ring-[oklch(0.7_0.18_55)]", "ring-[oklch(0.42_0.16_265)]", "ring-[oklch(0.55_0.16_150)]"][i % 3];
+            return (
+              <span key={l} className={`rounded-full bg-card px-4 py-2 text-sm font-semibold text-foreground shadow-soft ring-2 ${ring} transition hover:-translate-y-0.5 hover:shadow-elegant`}>{l}</span>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -492,20 +518,22 @@ function LanguagesBlock() {
 function CTA() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-primary p-10 shadow-elegant sm:p-16">
+      <div className="relative overflow-hidden rounded-3xl p-10 shadow-elegant sm:p-16"
+        style={{ background: "linear-gradient(135deg, oklch(0.62 0.21 50) 0%, oklch(0.32 0.16 265) 55%, oklch(0.48 0.17 150) 100%)" }}>
         <RainLayer count={40} opacity={0.25} />
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[oklch(0.7_0.18_55)] via-white to-[oklch(0.55_0.16_150)]" />
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
         <div className="relative max-w-2xl">
-          <Sparkles className="h-7 w-7 text-primary-foreground" />
-          <h2 className="mt-4 font-display text-4xl font-bold text-primary-foreground text-balance sm:text-5xl">
+          <Sparkles className="h-7 w-7 text-white" />
+          <h2 className="mt-4 font-display text-4xl font-extrabold text-white text-balance sm:text-5xl drop-shadow">
             <span className="font-hindi">अगली खेती क्रांति में आपका स्वागत है।</span>
           </h2>
-          <p className="mt-4 text-lg text-primary-foreground/85">Free for India's 120 million Kisans. <span className="font-hindi">हमेशा मुफ़्त। हमेशा आपकी भाषा में।</span></p>
+          <p className="mt-4 text-lg font-medium text-white">Free for India's 120 million Kisans. <span className="font-hindi">हमेशा मुफ़्त। हमेशा आपकी भाषा में।</span></p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 font-semibold text-foreground shadow-elegant transition hover:scale-[1.02]">
+            <Link to="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-bold text-[oklch(0.2_0.08_265)] shadow-elegant ring-2 ring-white transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[oklch(0.7_0.18_55)]">
               <span className="font-hindi">शुरू करें</span> <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/assistant" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-semibold text-primary-foreground backdrop-blur transition hover:bg-white/20">
+            <Link to="/assistant" className="inline-flex items-center gap-2 rounded-full bg-black/30 px-6 py-3 text-base font-bold text-white ring-2 ring-white backdrop-blur transition hover:bg-black/45 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[oklch(0.55_0.16_150)]">
               <Mic className="h-4 w-4" /> Talk to AI
             </Link>
           </div>
