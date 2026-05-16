@@ -37,15 +37,23 @@ function Landing() {
       <SiteHeader />
       <Hero />
       <Marquee />
+      <TricolorDivider />
       <LivingDashboard />
+      <TricolorDivider />
       <Features />
+      <TricolorDivider />
       <ScanPreview />
+      <TricolorDivider />
       <VoiceSection />
+      <TricolorDivider />
       <Stories />
+      <TricolorDivider />
       <Revolution />
+      <TricolorDivider />
       <LanguagesBlock />
       <CTA />
       <Footer />
+      <HighContrastToggle />
     </div>
   );
 }
