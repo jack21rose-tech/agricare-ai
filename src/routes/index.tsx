@@ -476,13 +476,13 @@ function Revolution() {
 
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
-              { v: "120M+", l: "किसान · Farmers" },
-              { v: "28", l: "राज्य · States" },
-              { v: "12", l: "भाषाएँ · Languages" },
+              { v: "120M+", l: "किसान · Farmers", c: "text-[oklch(0.55_0.22_50)]", b: "border-[oklch(0.7_0.18_55)]" },
+              { v: "28",    l: "राज्य · States",    c: "text-[oklch(0.35_0.16_265)]", b: "border-[oklch(0.42_0.16_265)]" },
+              { v: "12",    l: "भाषाएँ · Languages", c: "text-[oklch(0.42_0.17_150)]", b: "border-[oklch(0.55_0.16_150)]" },
             ].map((x) => (
-              <div key={x.l} className="rounded-2xl border bg-card/60 p-4 text-center shadow-soft">
-                <div className="font-display text-2xl font-bold text-primary">{x.v}</div>
-                <div className="mt-1 font-hindi text-xs text-muted-foreground">{x.l}</div>
+              <div key={x.l} className={`rounded-2xl border-2 bg-card p-4 text-center shadow-soft ${x.b}`}>
+                <div className={`font-display text-2xl font-extrabold ${x.c}`}>{x.v}</div>
+                <div className="mt-1 font-hindi text-xs font-medium text-foreground/80">{x.l}</div>
               </div>
             ))}
           </div>
