@@ -503,9 +503,12 @@ function LanguagesBlock() {
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Voice and chat in 12 Indian languages so every farmer feels at home.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {langs.map((l) => (
-            <span key={l} className="rounded-full border bg-card px-4 py-2 text-sm font-medium shadow-soft transition hover:-translate-y-0.5 hover:shadow-elegant">{l}</span>
-          ))}
+          {langs.map((l, i) => {
+            const ring = ["ring-[oklch(0.7_0.18_55)]", "ring-[oklch(0.42_0.16_265)]", "ring-[oklch(0.55_0.16_150)]"][i % 3];
+            return (
+              <span key={l} className={`rounded-full bg-card px-4 py-2 text-sm font-semibold text-foreground shadow-soft ring-2 ${ring} transition hover:-translate-y-0.5 hover:shadow-elegant`}>{l}</span>
+            );
+          })}
         </div>
       </div>
     </section>
