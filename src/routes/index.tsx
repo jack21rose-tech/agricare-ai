@@ -113,13 +113,13 @@ function Hero() {
           <div className="mt-8 flex flex-wrap gap-3 [text-shadow:none]">
             <Link
               to="/scan"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-elegant transition hover:scale-[1.02]"
+              className="cta-saffron inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-bold transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white"
             >
               <Camera className="h-5 w-5" /> <span className="font-hindi">फसल स्कैन करें</span>
             </Link>
             <Link
               to="/dashboard"
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-bold text-[oklch(0.2_0.08_265)] shadow-elegant ring-2 ring-white transition hover:bg-[oklch(0.97_0.02_85)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[oklch(0.55_0.16_150)]"
             >
               View Dashboard <ArrowRight className="h-4 w-4" />
             </Link>
