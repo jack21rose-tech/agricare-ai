@@ -47,15 +47,17 @@ function Landing() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[oklch(0.18_0.06_265)]">
+      {/* Tricolor top stripe */}
+      <div className="absolute inset-x-0 top-0 z-10 h-1.5 bg-gradient-to-r from-[oklch(0.7_0.18_55)] via-white to-[oklch(0.55_0.16_150)]" />
       <div className="absolute inset-0 -z-10">
-        <img src={heroFarm} alt="" width={1920} height={1280} className="h-full w-full object-cover" />
-        {/* Strong base scrim for legibility */}
-        <div className="absolute inset-0 bg-[oklch(0.18_0.06_265/0.55)]" />
-        {/* Tricolor brand gradient on top */}
-        <div className="absolute inset-0 bg-gradient-hero" />
+        <img src={heroFarm} alt="" width={1920} height={1280} className="h-full w-full object-cover opacity-40" />
+        {/* Solid dark base scrim — guarantees contrast regardless of image */}
+        <div className="absolute inset-0 bg-[oklch(0.16_0.06_265/0.85)]" />
+        {/* Tricolor brand gradient accent */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.22_0.12_265/0.7)] via-[oklch(0.3_0.14_280/0.4)] to-[oklch(0.45_0.18_45/0.55)]" />
         {/* Left-side fade so headline always sits on dark */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.15_0.06_265/0.85)] via-[oklch(0.15_0.06_265/0.45)] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.12_0.05_265/0.85)] via-[oklch(0.14_0.05_265/0.55)] to-transparent" />
         {/* Bottom fade into page */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
       </div>
