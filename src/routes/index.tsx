@@ -424,22 +424,25 @@ function Stories() {
         </h2>
       </div>
       <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {stories.map((s) => (
-          <article key={s.name} className="group overflow-hidden rounded-3xl border bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-elegant">
-            <div className="relative h-56 overflow-hidden">
-              <img src={s.img} alt={s.name} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent" />
-              <div className="absolute bottom-3 left-4 text-white">
-                <div className="font-display text-lg font-semibold">{s.name}</div>
-                <div className="text-xs opacity-80">{s.place}</div>
+        {stories.map((s, i) => {
+          const accent = ["text-[oklch(0.55_0.22_50)]", "text-[oklch(0.35_0.16_265)]", "text-[oklch(0.42_0.17_150)]"][i % 3];
+          return (
+            <article key={s.name} className="group overflow-hidden rounded-3xl border border-[oklch(0.86_0.04_85)] bg-card shadow-soft border-tricolor-t transition hover:-translate-y-1 hover:shadow-elegant">
+              <div className="relative h-56 overflow-hidden">
+                <img src={s.img} alt={s.name} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white">
+                  <div className="font-display text-lg font-bold drop-shadow">{s.name}</div>
+                  <div className="text-xs font-medium opacity-95">{s.place}</div>
+                </div>
               </div>
-            </div>
-            <div className="p-6">
-              <Quote className="h-5 w-5 text-primary" />
-              <p className="mt-3 font-hindi text-sm leading-relaxed text-foreground/90">{s.quote}</p>
-            </div>
-          </article>
-        ))}
+              <div className="p-6">
+                <Quote className={`h-5 w-5 ${accent}`} />
+                <p className="mt-3 font-hindi text-base leading-relaxed text-foreground">{s.quote}</p>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
