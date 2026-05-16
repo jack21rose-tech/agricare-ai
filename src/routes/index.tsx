@@ -274,17 +274,24 @@ function Features() {
         </h2>
       </div>
       <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {feats.map(({ icon: Icon, t, h, d }) => (
-          <div key={t} className="group rounded-2xl border bg-card p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-elegant">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
-              <Icon className="h-6 w-6 text-primary-foreground" />
-              <span className="absolute -inset-1 rounded-2xl animate-node-glow opacity-0 group-hover:opacity-100" />
+        {feats.map(({ icon: Icon, t, h, d }, i) => {
+          const palette = [
+            { bg: "cta-saffron", h: "text-[oklch(0.55_0.22_50)]" },
+            { bg: "cta-indigo",  h: "text-[oklch(0.35_0.16_265)]" },
+            { bg: "cta-green",   h: "text-[oklch(0.42_0.17_150)]" },
+          ][i % 3];
+          return (
+            <div key={t} className="group rounded-2xl border border-[oklch(0.86_0.04_85)] bg-card p-6 shadow-soft border-tricolor-t transition hover:-translate-y-1 hover:shadow-elegant">
+              <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl shadow-glow ${palette.bg}`}>
+                <Icon className="h-6 w-6 text-white" />
+                <span className="absolute -inset-1 rounded-2xl animate-node-glow opacity-0 group-hover:opacity-100" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-bold text-foreground">{t}</h3>
+              <p className={`mt-1 font-hindi text-sm font-semibold ${palette.h}`}>{h}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/75">{d}</p>
             </div>
-            <h3 className="mt-5 font-display text-xl font-semibold">{t}</h3>
-            <p className="mt-1 font-hindi text-sm text-primary">{h}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
