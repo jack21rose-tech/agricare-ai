@@ -13,6 +13,11 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { RainLayer } from "@/components/RainLayer";
 import { VoiceWave } from "@/components/VoiceWave";
 import { RippleButton } from "@/components/RippleButton";
+import { HighContrastToggle } from "@/components/HighContrastToggle";
+
+function TricolorDivider() {
+  return <div role="separator" aria-hidden className="divider-tricolor" />;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
