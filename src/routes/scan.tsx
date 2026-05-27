@@ -5,6 +5,27 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { analyzeCropImage } from "@/lib/scan.functions";
 import { useServerFn } from "@tanstack/react-start";
 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+
+
+
+const handleReset = () => {
+  if (inputRef.current) {
+    inputRef.current.value = "";
+  }
+
+  setPreview(null);   // clears image preview
+  setResult(null);    // clears prediction result
+};
+
 export const Route = createFileRoute("/scan")({
   head: () => ({
     meta: [
@@ -22,6 +43,7 @@ type Result = {
   causes: string;
   treatment: string;
   prevention: string;
+  r_predict: { class: string; confidence: number }[];
   healthy: boolean;
 };
 
@@ -79,7 +101,7 @@ function Scan() {
             className="relative flex min-h-[380px] flex-col items-center justify-center rounded-3xl border-2 border-dashed border-border bg-card p-8 text-center shadow-soft transition hover:border-primary/50"
           >
             {preview ? (
-              <img src={preview} alt="preview" className="absolute inset-0 h-full w-full rounded-3xl object-cover" />
+              <img src={preview} alt="preview" className="absolute inset-0 h-full w-full rounded-3xl  object-contain bg-black/5 p-2" />
             ) : (
               <>
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-primary shadow-glow">
@@ -93,6 +115,9 @@ function Scan() {
                 >
                   <Upload className="h-4 w-4" /> Choose photo
                 </button>
+
+               
+
                 <input
                   ref={inputRef}
                   type="file"
@@ -147,9 +172,74 @@ function Scan() {
                 <Section title="Likely causes" body={result.causes} />
                 <Section title="Treatment" body={result.treatment} accent />
                 <Section title="Prevention" body={result.prevention} />
-                <Link to="/assistant" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background">
-                  Ask the AI assistant <ArrowRight className="h-4 w-4" />
-                </Link>
+                 
+                <Section
+                  title="Top Predictions"
+                  body={
+                    <div className="space-y-3">
+
+                      {(result.r_predict || []).map((r, index) => {
+
+                        const label = r.class
+                          .replace("___", " - ")
+                          .replaceAll("_", " ");
+
+                        return (
+                          <div key={index}>
+
+                            {/* LABEL + PERCENT */}
+                            <div className="mb-1 flex items-center justify-between text-sm">
+                              <span className="font-medium">
+                                {label}
+                              </span>
+
+                              <span className="text-muted-foreground">
+                                {Math.round(r.confidence)}%
+                              </span>
+                            </div>
+
+                            {/* PROGRESS BAR */}
+                            <div className="h-3 overflow-hidden rounded-full bg-muted">
+
+                              <div
+                                className="h-full rounded-full bg-gradient-primary transition-all duration-500"
+                                style={{
+                                  width: `${r.confidence}%`,
+                                }}
+                              />
+
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      {/* AI ASSISTANT BUTTON */}
+                      <div className="pt-4">
+                        <Link
+                          to="/assistant"
+                          className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background"
+                        >
+                          Ask the AI assistant
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+
+                         <button
+                          onClick={() => {
+                            setPreview(null);
+                            setResult(null);
+                          }}
+                          className="mt-4 rounded-full bg-gray-200 px-5 py-2 text-sm font-medium hover:bg-gray-300"
+                        >
+                          Reset
+                        </button>
+                      </div>
+
+                    </div>
+                  }
+                />
+
+
+
               </div>
             )}
           </div>

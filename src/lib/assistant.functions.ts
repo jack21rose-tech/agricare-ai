@@ -18,6 +18,7 @@ export const askAssistant = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }) => {
     const apiKey = process.env.LOVABLE_API_KEY;
+
     if (!apiKey) throw new Error("AI gateway not configured");
 
     const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
