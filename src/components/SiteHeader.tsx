@@ -18,9 +18,9 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-7 text-sm font-semibold md:flex">
           {[
             { to: "/", label: "Home" },
-            { /*to: "/dashboard", label: "Dashboard" */ },
+            { /*to: "/dashboard", label: "Dashboard"*/ },
             { to: "/scan", label: "Scan" },
-            {  /*to: "/assistant", label: "Assistant" */ },
+            {  /*to: "/assistant", label: "Assistant"*/ },
             {  /*to: "/admin", label: "Admin" */ },
           ].map((l) => (
             <Link
